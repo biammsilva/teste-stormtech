@@ -4,7 +4,7 @@ from rest_framework_mongoengine import routers
 from microservice import views
 from rest_framework.documentation import include_docs_urls
 
-router = routers.DefaultRouter()
+router = routers.DefaultRouter(trailing_slash=False)
 router.register(r"book", views.BookView)
 
 urlpatterns = [

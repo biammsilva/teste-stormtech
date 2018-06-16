@@ -1,4 +1,7 @@
-from mongoengine import Document, EmbeddedDocument, fields
+from mongoengine import Document, fields
 
 class Book(Document):
-    pass
+    title = fields.StringField(required=True)
+    author = fields.StringField(required=True)
+    edition_year = fields.IntField(required=True)
+    created_at = fields.DateTimeField()
