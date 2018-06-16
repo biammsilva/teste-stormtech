@@ -26,6 +26,8 @@ Django = "==2.0"
 "Jinja2" = "==2.10"
 MarkupSafe = "==1.0"
 whitenoise = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [dev-packages]
 
