@@ -1,6 +1,7 @@
 from django.test import TestCase
 from microservice.models import Book
 from microservice.sorting_service import sort
+from datetime import datetime
 
 class BooksTestCase(TestCase):
     def setUp(self):
@@ -28,12 +29,19 @@ class BooksTestCase(TestCase):
         self.assertEqual(sorted[0].title, 'A menina que roubava livros')
         self.assertEqual(sorted[-1].title, 'O Senhor dos Anéis - O retorno do Rei')
 
-    def test_sorting_by_title(self):
+    def test_sorting_by_author(self):
         sorted = sort("author")
         self.assertEqual(sorted[0].author, 'J. R. R. Tolkien')
-        self.assertEqual(sorted[-1].title, 'Markus Zusak')
+        self.assertEqual(sorted[-1].author, 'Markus Zusak')
 
-    def test_sorting_by_title(self):
-        sorted = sort("tiedition_yeartle")
-        self.assertEqual(sorted[0].title, 1949)
-        self.assertEqual(sorted[-1].title, 2005)
+    def test_sorting_by_edition_year(self):
+        sorted = sort("edition_year")
+        self.assertEqual(sorted[0].edition_year, 1949)
+        self.assertEqual(sorted[-1].edition_year, 2005)
+
+    def test_creating_book(self):
+        new_book = Book(title="As Crônicas de Nárnia",
+            author="Clive Staples Lewis",
+            edition_year=2000,
+            created_at=datetime.now()).save()
+        self.assertEqual(new_book, Book.objects(title = "As Crônicas de Nárnia").first())

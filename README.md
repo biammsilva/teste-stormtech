@@ -83,5 +83,5 @@ GET http://localhost:8000/book?filter=title
 
 Dentro da env:
 ```
-pytest tests.py
+python manage.py test
 ```
